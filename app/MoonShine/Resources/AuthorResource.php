@@ -7,6 +7,8 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Author;
 
+use MoonShine\Fields\Td;
+use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
@@ -22,15 +24,41 @@ class AuthorResource extends ModelResource
 
     protected string $title = 'Author';
 
-    /**
-     * @return list<MoonShineComponent|Field>
-     */
-    public function fields(): array
+//    /**
+//     * @return list<MoonShineComponent|Field>
+//     */
+//    public function fields(): array
+//    {
+//        return [
+//            Block::make([
+//                ID::make()->sortable(),
+//            ]),
+//        ];
+//    }
+
+    public function indexFields(): array
     {
         return [
-            Block::make([
-                ID::make()->sortable(),
-            ]),
+            ID::make()->sortable(),
+            Text::make('Name')->sortable(),
+            Text::make('Surname')->sortable(),
+        ];
+    }
+    public function formFields(): array
+    {
+        return [
+            Text::make('Имя','name'),
+            Text::make('Фамилия','surname'),
+            Text::make('Биография','biography'),
+        ];
+    }
+
+    public function detailFields(): array
+    {
+        return [
+            ID::make(),
+            Text::make('Name'),
+            Text::make('Surname'),
         ];
     }
 

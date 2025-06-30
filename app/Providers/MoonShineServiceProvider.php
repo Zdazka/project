@@ -50,7 +50,8 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                     new MoonShineUserRoleResource()
                 ),
             ]),
-            MenuItem::make('Autors',
+            MenuItem::make(
+                'Autors',
                 new AuthorResource()
             ),
 
